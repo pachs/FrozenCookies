@@ -1868,8 +1868,9 @@ function autoCookie() {
         if (goldenCookieLife() && FrozenCookies.autoGC) {
             if (!Game.hasBuff('Cookie storm') || FrozenCookies.stormLimit == 0) {
                 for (var i in Game.shimmers) {
-                if (Game.shimmers[i].type == 'golden') {
-                    Game.shimmers[i].pop();
+                    if (Game.shimmers[i].type == 'golden') {
+                        Game.shimmers[i].pop();
+                    }
                 }
             }
             if (Game.hasBuff('Cookie storm') && FrozenCookies.cookieStormSpeed > 0) {
