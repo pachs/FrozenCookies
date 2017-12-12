@@ -27,6 +27,7 @@ function setOverrides() {
     FrozenCookies.cookieClickSpeed = preferenceParse('cookieClickSpeed', 0);
     FrozenCookies.frenzyClickSpeed = preferenceParse('frenzyClickSpeed', 0);
     FrozenCookies.HCAscendAmount = preferenceParse('HCAscendAmount', 0);
+    FrozenCookies.cookieStormSpeed = preferenceParse('cookieStormSpeed', 1);
 
     // Becomes 0 almost immediately after user input, so default to 0
     FrozenCookies.timeTravelAmount = 0;
@@ -1865,10 +1866,15 @@ function autoCookie() {
 
         // This apparently *has* to stay here, or else fast purchases will multi-click it.
         if (goldenCookieLife() && FrozenCookies.autoGC) {
-            for (var i in Game.shimmers) {
+            if (!Game.hasBuff('Cookie storm') || FrozenCookies.stormLimit == 0) {
+                for (var i in Game.shimmers) {
                 if (Game.shimmers[i].type == 'golden') {
                     Game.shimmers[i].pop();
                 }
+            }
+            if (Game.hasBuff('Cookie storm') && FrozenCookies.cookieStormSpeed > 0) {
+                setInterval(popOneGC, 1000/FrozenCookies.cookieStormSpeed);
+                popOneGC();
             }
         }
         if (reindeerLife() > 0 && FrozenCookies.autoReindeer) {
@@ -1918,6 +1924,14 @@ function autoCookie() {
     }
 }
 
+function popOneGC() {
+    for (var i in Game.shimmers) {
+                if (Game.shimmers[i].type == 'golden') {
+                    Game.shimmers[i].pop();
+                    return;
+                }
+    }
+}
 function FCStart() {
     //  To allow polling frequency to change, clear intervals before setting new ones.
 
