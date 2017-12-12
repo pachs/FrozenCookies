@@ -1925,12 +1925,14 @@ function autoCookie() {
 }
 
 function popOneGC() {
-    for (var i in Game.shimmers) {
-                if (Game.shimmers[i].type == 'golden') {
-                    Game.shimmers[i].pop();
-                    console.log('PopOne Triggered')
-                    return 1;
-                }
+    if (Game.hasBuff('Cookie storm'): {
+        for (var i in Game.shimmers) {
+            if (Game.shimmers[i].type == 'golden') {
+                Game.shimmers[i].pop();
+                console.log('PopOne Triggered')
+                return 1;
+            }
+        }
     }
 }
 function FCStart() {
