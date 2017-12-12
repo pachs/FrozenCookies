@@ -17,7 +17,7 @@ FrozenCookies.preferenceValues = {
     },
     'stormLimit':{
         'hint':'Choose rate of Golden Cookies clicked per second during Cookie Storms.',
-        'display':['Cookie Storm Limit ON','Cookie Storm Limit OFF'],
+        'display':['Cookie Storm Limit OFF','Cookie Storm Limit ON'],
         'default':0,
         'extras':'<a class="option" id="cookieStormSpeed" onclick="updateSpeed(\'cookieStormSpeed\');">${cookieStormSpeed} clicks/sec</a>'
     },
