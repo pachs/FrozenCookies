@@ -1925,7 +1925,7 @@ function autoCookie() {
 }
 
 function popOneGC() {
-    if (Game.hasBuff('Cookie storm'): {
+    if (Game.hasBuff('Cookie storm') {
         for (var i in Game.shimmers) {
             if (Game.shimmers[i].type == 'golden') {
                 Game.shimmers[i].pop();
