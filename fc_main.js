@@ -1875,7 +1875,6 @@ function autoCookie() {
             }
             if (Game.hasBuff('Cookie storm') && FrozenCookies.cookieStormSpeed > 0) {
                 setInterval(popOneGC, 1000/FrozenCookies.cookieStormSpeed);
-                popOneGC();
             }
         }
         if (reindeerLife() > 0 && FrozenCookies.autoReindeer) {
@@ -1929,7 +1928,7 @@ function popOneGC() {
     for (var i in Game.shimmers) {
                 if (Game.shimmers[i].type == 'golden') {
                     Game.shimmers[i].pop();
-                    return;
+                    return 1;
                 }
     }
 }
