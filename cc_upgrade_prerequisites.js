@@ -15,6 +15,12 @@ FrozenCookies.preferenceValues = {
         'display':["Autoclick GC OFF", "Autoclick GC ON"],
         'default':0
     },
+    'stormLimit':{
+        'hint':'Choose rate of Golden Cookies clicked per second during Cookie Storms.',
+        'display':['Cookie Storm Limit ON','Cookie Storm Limit OFF'],
+        'default':0,
+        'extras':'<a class="option" id="cookieStormSpeed" onclick="updateSpeed(\'cookieStormSpeed\');">${cookieStormSpeed} clicks/sec</a>'
+    },
     'autoWrinkler':{
         'hint':'Automatically pop wrinklers efficiently or instantly.',
         'display':['Autopop Wrinklers OFF', 'Autopop Wrinklers Efficiently', 'Autopop Wrinklers Instantly'],
