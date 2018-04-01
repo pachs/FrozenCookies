@@ -317,20 +317,20 @@ function updateTimers() {
         t_draw.push({
             f_percent: gc_max_delay,
             c1: "rgba(255, 155, 0, 1)",
-            name: "Golden Cookie Maximum (99%)",
+            name: "G.C. Max (99%)",
             display: timeDisplay((gc_max_delay * maxCookieTime()) / Game.fps)
         });
         t_draw.push({
             f_percent: gc_delay,
             c1: "rgba(255, 195, 0, 1)",
-            name: "Golden Cookie Estimate (50%)",
+            name: "G.C. Est (50%)",
             display: timeDisplay((gc_delay * maxCookieTime()) / Game.fps),
             overlay: true
         });
         t_draw.push({
             f_percent: gc_min_delay,
             c1: "rgba(255, 235, 0, 1)",
-            name: "Golden Cookie Minimum (1%)",
+            name: "G.C. Min (1%)",
             display: timeDisplay((gc_min_delay * maxCookieTime()) / Game.fps),
             overlay: true
 
