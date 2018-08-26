@@ -89,6 +89,9 @@ function setOverrides() {
     FrozenCookies.caches.recommendationList = [];
     FrozenCookies.caches.buildings = [];
     FrozenCookies.caches.upgrades = [];
+	
+	//Whether to currently display achievement popups
+	FrozenCookies.showAchievements = true;
 
     if (!blacklist[FrozenCookies.blacklist]) {
         FrozenCookies.blacklist = 0;
@@ -1102,6 +1105,7 @@ function purchaseEfficiency(price, deltaCps, baseDeltaCps, currentCps) {
 
 function recommendationList(recalculate) {
     if (recalculate) {
+		FrozenCookies.showAchievements=false;
         FrozenCookies.caches.recommendationList = addScores(
             upgradeStats(recalculate)
             .concat(buildingStats(recalculate))
@@ -1136,7 +1140,9 @@ function recommendationList(recalculate) {
         if (FrozenCookies.pastemode) {
             FrozenCookies.caches.recommendationList.reverse();
         }
+		FrozenCookies.showAchievements=true;
     }
+	
     return FrozenCookies.caches.recommendationList;
     //  return upgradeStats(recalculate).concat(buildingStats(recalculate)).sort(function(a,b){return (a.efficiency - b.efficiency)});
 }
@@ -1168,6 +1174,7 @@ function addScores(recommendations) {
 
 function nextPurchase(recalculate) {
     if (recalculate) {
+		FrozenCookies.showAchievements=false;
         var recList = recommendationList(recalculate);
         var purchase = null;
         var target = null;
@@ -1193,6 +1200,7 @@ function nextPurchase(recalculate) {
             FrozenCookies.caches.nextPurchase = defaultPurchase();
             FrozenCookies.caches.nextChainedPurchase = defaultPurchase();
         }
+		FrozenCookies.showAchievements=true;
     }
     return FrozenCookies.caches.nextPurchase;
     //  return purchase;
@@ -1205,6 +1213,7 @@ function nextChainedPurchase(recalculate) {
 
 function buildingStats(recalculate) {
     if (recalculate) {
+		FrozenCookies.showAchievements=false;
         var buildingBlacklist = blacklist[FrozenCookies.blacklist].buildings;
         var currentBank = bestBank(0).cost;
         FrozenCookies.caches.buildings = Game.ObjectsById.map(function(current, index) {
@@ -1235,12 +1244,14 @@ function buildingStats(recalculate) {
         }).filter(function(a) {
             return a;
         });
+		FrozenCookies.showAchievements=true;
     }
     return FrozenCookies.caches.buildings;
 }
 
 function upgradeStats(recalculate) {
     if (recalculate) {
+		FrozenCookies.showAchievements=false;
         var upgradeBlacklist = blacklist[FrozenCookies.blacklist].upgrades;
         var currentBank = bestBank(0).cost;
         FrozenCookies.caches.upgrades = Game.UpgradesById.map(function(current) {
@@ -1279,6 +1290,7 @@ function upgradeStats(recalculate) {
         }).filter(function(a) {
             return a;
         });
+		FrozenCookies.showAchievements=true;
     }
     return FrozenCookies.caches.upgrades;
 }
@@ -1871,9 +1883,9 @@ function fcWin(what) {
                 if (!FrozenCookies.disabledPopups) {
                     logEvent('Achievement', 'Achievement unlocked :<br>' + Game.Achievements[what].name + '<br> ', true);
                 }
-                //if (FrozenCookies.showAchievements) {
-                //    Game.Notify('Achievement unlocked','<div class="title" style="font-size:18px;margin-top:-2px;">'+achname+'</div>',Game.Achievements[what].icon);
-                //}
+                if (FrozenCookies.showAchievements) {
+                    Game.Notify('Achievement unlocked','<div class="title" style="font-size:18px;margin-top:-2px;">'+achname+'</div>',Game.Achievements[what].icon);
+                }
                 if (Game.Achievements[what].pool != 'shadow') {
                     Game.AchievementsOwned++;
                 }
