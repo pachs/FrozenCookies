@@ -89,7 +89,7 @@ function setOverrides() {
     FrozenCookies.caches.recommendationList = [];
     FrozenCookies.caches.buildings = [];
     FrozenCookies.caches.upgrades = [];
-	
+
 	//Whether to currently display achievement popups
 	FrozenCookies.showAchievements = true;
 
